@@ -1,0 +1,25 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             x:Class="Bcan.Pg.UI.App"
+             xmlns:local="using:Bcan.Pg.UI"
+             RequestedThemeVariant="Dark">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <themes:CustomMaterialTheme>
+            <themes:CustomMaterialTheme.Palettes>
+                <themes:CustomMaterialThemeResources x:Key="Dark"
+                                            PrimaryColor="#4169E1"
+                                            SecondaryColor="#00BFFF" />
+                <themes:CustomMaterialThemeResources x:Key="Light"
+                                            PrimaryColor="#4169E1"
+                                            SecondaryColor="#00BFFF" />
+            </themes:CustomMaterialTheme.Palettes>
+        </themes:CustomMaterialTheme>
+    </Application.Styles>
+</Application>

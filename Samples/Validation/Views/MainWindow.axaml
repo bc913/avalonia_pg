@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Bcan.Pg.UI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Bcan.Pg.UI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Bcan.Pg.UI">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <TabControl>
+        <!--Validation using DataAnnotations-->
+        <TabItem Header="DataAnnotations">
+            <TextBox Text="{Binding DataAnnotationVm.Email}" />
+        </TabItem>
+
+        <TabItem Header="Observable">
+            <TextBox Text="{Binding ObservableAnnVm.Email}" />
+        </TabItem>
+
+        <!--Validation using Exceptions in setter-->
+        <TabItem Header="ExceptionInsideSetter">
+            <TextBox Text="{Binding ExptInsideSetterVm.Email}" />
+        </TabItem>
+    </TabControl>
+    
+</Window>
