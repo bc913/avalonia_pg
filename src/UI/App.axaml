@@ -3,7 +3,8 @@
              xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
              x:Class="Bcan.Pg.UI.App"
              xmlns:local="using:Bcan.Pg.UI"
-             RequestedThemeVariant="Dark">
+             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia" 
+             RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
@@ -22,5 +23,6 @@
             </themes:CustomMaterialTheme.Palettes>
         </themes:CustomMaterialTheme>
         <StyleInclude Source="Assets/Icons.axaml" />
+        <materialIcons:MaterialIconStyles />
     </Application.Styles>
 </Application>
