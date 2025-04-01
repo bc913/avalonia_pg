@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Height="350"
+        Width="350"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="350"
+        xmlns:view="using:Bcan.Pg.UI.Views"
+        xmlns:vm="using:Bcan.Pg.UI.ViewModels"
+        xmlns:model="using:Bcan.Pg.UI.Models"
+        x:Class="Bcan.Pg.UI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Bcan.Pg.UI">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Window.DataTemplates>
+        <!--  Add a DataTemplate for a Student  -->
+        <!--  Mind the order of the Templates. Begin with the most specific first.  -->
+        <DataTemplate DataType="model:Student">
+            <StackPanel>
+                <TextBlock FontWeight="Bold" Text="{Binding Grade, StringFormat='I am a student in {0}. grade'}" />
+                <!--  We re-use the PersonTemplate here by using DynamicResource  -->
+                <view:PersonView />
+            </StackPanel>
+        </DataTemplate>
+
+        <!--  Add a DataTemplate for a Teacher  -->
+        <DataTemplate DataType="model:Teacher">
+            <StackPanel>
+                <TextBlock FontWeight="Bold" Text="{Binding Subject, StringFormat='I am a teacher for: &quot;{0}&quot;'}" />
+                <!--  We use a UserControl here to display the data  -->
+                <view:PersonView />
+            </StackPanel>
+        </DataTemplate>
+
+    </Window.DataTemplates>
+
+    <ListBox ItemsSource="{Binding People}" />
+    
+</Window>

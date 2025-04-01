@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Height="350"
+        Width="350"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="350"
+        xmlns:view="using:Bcan.Pg.UI.Views"
+        xmlns:vm="using:Bcan.Pg.UI.ViewModels"
+        xmlns:model="using:Bcan.Pg.UI.Models"
+        xmlns:dataTemplates="using:Bcan.Pg.UI.DataTemplates"
+        x:Class="Bcan.Pg.UI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Bcan.Pg.UI">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <ListBox ItemsSource="{Binding People}">
+        <ListBox.ItemTemplate>
+            <DataTemplate DataType="model:Person">
+                <Grid ColumnDefinitions="Auto, *">
+                    <!--  We can use x:Static to reference a static property of any class.  -->
+                    <ContentControl Content="{Binding}" ContentTemplate="{x:Static dataTemplates:DataTemplateProvider.GenderDataTemplate}" />
+                    <TextBlock Grid.Column="1"
+                               Margin="10,0"
+                               VerticalAlignment="Center"
+                               Text="{Binding}" />
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    
+</Window>
