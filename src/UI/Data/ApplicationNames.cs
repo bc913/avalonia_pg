@@ -4,6 +4,7 @@ public enum ApplicationNames
 {
     Unknown,
     Home,
+    Charts,
     Tdh,
     Actions,
     Macros,
