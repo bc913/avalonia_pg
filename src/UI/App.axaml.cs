@@ -1,11 +1,15 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Bcan.Pg.UI.Data;
+using Bcan.Pg.UI.Factories;
 using Bcan.Pg.UI.ViewModels;
 using Bcan.Pg.UI.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Bcan.Pg.UI;
 
@@ -18,6 +22,20 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        var collection = new ServiceCollection();
+         collection.AddSingleton<MainWindowViewModel>();
+         collection.AddTransient<HomePageViewModel>();
+         
+         collection.AddSingleton<Func<ApplicationNames, PageViewModel>>(x => name => name switch
+         {
+             ApplicationNames.Home => x.GetRequiredService<HomePageViewModel>(),
+             _ => throw new NotImplementedException()
+         });
+         collection.AddSingleton<PageFactory>();
+        
+         // Service locator. Responsible for locating for your injected services
+         var services = collection.BuildServiceProvider();
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -25,7 +43,7 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = services.GetRequiredService<MainWindowViewModel>(),
             };
         }
 
