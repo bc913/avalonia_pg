@@ -9,6 +9,8 @@ using Bcan.Pg.UI.Data;
 using Bcan.Pg.UI.Factories;
 using Bcan.Pg.UI.ViewModels;
 using Bcan.Pg.UI.Views;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bcan.Pg.UI;
@@ -18,6 +20,10 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        LiveCharts.Configure(config =>
+            config
+                .AddDarkTheme()
+        );
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -25,10 +31,12 @@ public partial class App : Application
         var collection = new ServiceCollection();
          collection.AddSingleton<MainWindowViewModel>();
          collection.AddTransient<HomePageViewModel>();
+         collection.AddTransient<ChartsPageViewModel>();
          
          collection.AddSingleton<Func<ApplicationNames, PageViewModel>>(x => name => name switch
          {
              ApplicationNames.Home => x.GetRequiredService<HomePageViewModel>(),
+             ApplicationNames.Charts => x.GetRequiredService<ChartsPageViewModel>(),
              _ => throw new NotImplementedException()
          });
          collection.AddSingleton<PageFactory>();

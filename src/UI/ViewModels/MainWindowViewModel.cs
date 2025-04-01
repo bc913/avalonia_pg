@@ -32,7 +32,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _pageFactory = pageFactory;
         Items = new ObservableCollection<ListItemTemplate>
         {
-            new ListItemTemplate(ApplicationNames.Home, "HomeRegular", "Home")
+            new ListItemTemplate(ApplicationNames.Home, "HomeRegular", "Home"),
             // new ListItemTemplate(typeof(ButtonPageViewModel), "CursorHoverRegular", "Buttons"),
             // new ListItemTemplate(typeof(TextPageViewModel), "TextNumberFormatRegular", "Text"),
             // new ListItemTemplate(typeof(ValueSelectionPageViewModel), "CalendarCheckmarkRegular", "Value Selection"),
@@ -40,7 +40,7 @@ public partial class MainWindowViewModel : ViewModelBase
             // new ListItemTemplate(typeof(GridPageViewModel), "GridRegular", "Grids"),
             // new ListItemTemplate(typeof(DragAndDropPageViewModel), "TapDoubleRegular", "Drang And Drop"),
             // new ListItemTemplate(typeof(LoginPageViewModel), "LockRegular", "Login Form"),
-            // new ListItemTemplate(typeof(ChartsPageViewModel), "PollRegular", "Charts")
+            new ListItemTemplate(ApplicationNames.Charts, "PollRegular", "Charts")
         };
         
         SelectedListItem = Items.First(vm => vm.Name == ApplicationNames.Home);
